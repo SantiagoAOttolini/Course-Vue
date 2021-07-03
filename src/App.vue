@@ -4,23 +4,24 @@
       <nav>
         <ul>
           <li class="nav-item">
-            <img class="logo" src="./assets/build-a-bot-logo.png" alt="">
+            <img class="logo" src="./assets/build-a-bot-logo.png" alt="" />
             Build-a-bot
           </li>
         </ul>
       </nav>
     </header>
-    <main><HelloPage /></main>
+    <main><RobotBuilder /></main>
   </div>
 </template>
 
 <script>
-import HelloPage from './components/HelloPage.vue';
+// import HelloPage from './home/HomePage.vue';
+import RobotBuilder from './build/RobotBuilder.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloPage,
+    RobotBuilder,
   },
 };
 </script>
@@ -38,7 +39,7 @@ body {
   color: #2c3e50;
   margin-top: 60px;
 }
-main{
+main {
   margin: 0 auto;
   padding: 30px;
   background-color: white;

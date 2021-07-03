@@ -20,10 +20,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.home{
+.home {
   text-align: center;
 }
-.robot{
+.robot {
   height: 300px;
 }
 </style>
