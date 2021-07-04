@@ -10,7 +10,9 @@
         </ul>
       </nav>
     </header>
-    <main><RobotBuilder /></main>
+    <main>
+      <RobotBuilder />
+    </main>
   </div>
 </template>
 
@@ -34,6 +36,9 @@ body {
 </style>
 
 <style scoped>
+  .robot-name{
+    color:red;
+  }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
