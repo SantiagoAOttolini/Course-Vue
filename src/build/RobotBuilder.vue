@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="content">
+    <button class="add-to-cart" @click="addToCArt()">Add to cart</button>
     <div class="top-row">
       <div class="top part">
         <div class="robot-name">
@@ -7,53 +8,49 @@
           <span v-if="selectedRobot.head.onSale" class="sale">Sale!</span>
         </div>
         <img :src="selectedRobot.head.src" title="head" />
-        <button @click="selectPreviousHead()" class="prev-selector">
-          &#9668;
-        </button>
-        <button @click="selectNextHead()" class="next-selector">
-          &#9658;
-        </button>
+        <button @click="selectPreviousHead()" class="prev-selector">&#9668;</button>
+        <button @click="selectNextHead()" class="next-selector">&#9658;</button>
       </div>
     </div>
     <div class="middle-row">
       <div class="left part">
         <img :src="selectedRobot.leftArm.src" title="left arm" />
-        <button @click="selectPreviousLeftArm()" class="prev-selector">
-          &#9650;
-        </button>
-        <button @click="selectNextLeftArm()" class="next-selector">
-          &#9660;
-        </button>
+        <button @click="selectPreviousLeftArm()" class="prev-selector">&#9650;</button>
+        <button @click="selectNextLeftArm()" class="next-selector">&#9660;</button>
       </div>
       <div class="center part">
         <img :src="selectedRobot.torso.src" title="left arm" />
-        <button @click="selectPreviousTorsos()" class="prev-selector">
-          &#9668;
-        </button>
-        <button @click="selectNextTorsos()" class="next-selector">
-          &#9658;
-        </button>
+        <button @click="selectPreviousTorsos()" class="prev-selector">&#9668;</button>
+        <button @click="selectNextTorsos()" class="next-selector">&#9658;</button>
       </div>
       <div class="right part">
         <img :src="selectedRobot.rightArm.src" title="left arm" />
-        <button @click="selectPreviousRightArms()" class="prev-selector">
-          &#9650;
-        </button>
-        <button @click="selectNextRightArms()" class="next-selector">
-          &#9660;
-        </button>
+        <button @click="selectPreviousRightArms()" class="prev-selector">&#9650;</button>
+        <button @click="selectNextRightArms()" class="next-selector">&#9660;</button>
       </div>
     </div>
     <div class="bottom-row">
       <div class="bottom part">
         <img :src="selectedRobot.base.src" title="left arm" />
-        <button @click="selectPreviousBases()" class="prev-selector">
-          &#9668;
-        </button>
-        <button @click="selectNextBases()" class="next-selector">
-          &#9658;
-        </button>
+        <button @click="selectPreviousBases()" class="prev-selector">&#9668;</button>
+        <button @click="selectNextBases()" class="next-selector">&#9658;</button>
       </div>
+    </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Robot</th>
+            <th class="cost">Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(robot, index) in cart" :key="index">
+            <td>{{ robot.head.title }}</td>
+            <td class="cost">{{ robot.cost }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -76,6 +73,7 @@ export default {
   data() {
     return {
       availableParts,
+      cart: [],
       selectedHeadIndex: 0,
       selectedLeftArmIndex: 0,
       selectedRightArmIndex: 0,
@@ -92,6 +90,17 @@ export default {
         rightArm: availableParts.arms[this.selectedRightArmIndex],
         base: availableParts.bases[this.selectedBasesIndex],
       };
+    },
+    // eslint-disable-next-line vue/return-in-computed-property
+    addToCArt() {
+      const robot = this.selectedRobot;
+      const cost =
+        robot.head.cost +
+        robot.leftArm.cost +
+        robot.torso.cost +
+        robot.rightArm.cost +
+        robot.base.cost;
+      this.cart.push(Object.assign({}, robot, { cost }));
     },
   },
   methods: {
@@ -159,7 +168,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .part {
   position: relative;
   width: 165px;
@@ -257,5 +266,27 @@ export default {
 }
 .sale {
   color: red;
+}
+.content {
+  position: relative;
+}
+.add-to-cart {
+  position: absolute;
+  right: 30px;
+  width: 220px;
+  padding: 3px;
+  font-size: 16px;
+}
+td,
+th {
+  text-align: left;
+  padding: 5px;
+  padding-right: 20px;
+}
+.cost {
+  text-align: right;
+}
+.cart {
+  text-align: left;
 }
 </style>
