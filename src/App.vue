@@ -36,9 +36,9 @@ body {
 </style>
 
 <style scoped>
-  .robot-name{
-    color:red;
-  }
+.robot-name {
+  color: red;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
